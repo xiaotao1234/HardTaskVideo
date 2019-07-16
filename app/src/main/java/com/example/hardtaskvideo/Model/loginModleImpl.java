@@ -5,8 +5,19 @@ import com.example.hardtaskvideo.Interface.Logincallback;
 
 public class loginModleImpl implements LoginModel {
     @Override
-    public String getInfo(String key, Logincallback logincallback) {
-        return null;
+    public void getInfo(String key, final Logincallback logincallback) {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                logincallback.OnScuess();
+            }
+        });
+        thread.start();
     }
 
     @Override
